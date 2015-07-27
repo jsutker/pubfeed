@@ -8,6 +8,7 @@
   <%= analytics_init if Rails.env.production? %>
 </head>
 <body>
+<div class="container">
 
 <p class="navbar-text pull-right">
 <% if user_signed_in? %>
@@ -32,6 +33,7 @@
   <% end %>
 </div>
 <%= yield %>
+</div>
 
 </body>
 </html>

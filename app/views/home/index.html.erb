@@ -2,9 +2,15 @@
 
 <% if user_signed_in? %>
 
-Enter keywords you'd like to recieve updates on here. 
-
-<form> </form>
+Enter keywords you'd like to recieve updates on here. <br><strong>
+<%= current_user.keywords.map{|keyword|keyword.name}.join(" • ") %>
+</strong>
+<div class="keyword_list"></div>
+<br>
+<%= form_for @keyword do |f| %>
+<%= f.text_field :name %>
+<%= f.submit "Add Keyword" %>
+<% end %>
 <br>
 <br>
 Feed
