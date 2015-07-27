@@ -3,6 +3,7 @@ class Keyword < ActiveRecord::Base
   has_many :users, through: :user_keywords
   has_many :keyword_articles
   has_many :articles, through: :keyword_articles
+  validates :name, presence: true
 
   BASE_URL = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmode=json&retmax=1000&term="
 
