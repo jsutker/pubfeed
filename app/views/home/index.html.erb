@@ -3,9 +3,11 @@
 <% if user_signed_in? %>
 
 Enter keywords you'd like to recieve updates on here. <br>
-<% current_user.keywords.map{|keyword|keyword.name}.join(" • ") %>
 
-<div class="keyword_list"><strong><%= current_user.keywords.map{|keyword|keyword.name}.join(' • ') %></strong></div>
+<div class="keyword_list">
+<%= render "keywords/list" %>
+</div>
+
 <br>
 <%= form_for @keyword, remote: true do |f| %>
 <%= f.text_field :name %>
