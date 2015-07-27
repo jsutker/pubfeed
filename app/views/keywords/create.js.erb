@@ -1,0 +1,2 @@
+$('.keyword_list strong').html("<%= j current_user.keywords.map{|keyword|keyword.name}.join(' • ') %>")
+$('#keyword_name').val('')
