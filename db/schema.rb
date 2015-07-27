@@ -11,7 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150727152832) do
+ActiveRecord::Schema.define(version: 20150727190742) do
+
+  create_table "articles", force: :cascade do |t|
+    t.string   "title"
+    t.text     "abstract"
+    t.integer  "id_from_json"
+    t.string   "authors"
+    t.string   "journal"
+    t.string   "related_keywords"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "keyword_articles", force: :cascade do |t|
+    t.integer  "keyword_id"
+    t.integer  "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "keywords", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_keywords", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "keyword_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
