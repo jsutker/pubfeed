@@ -1,40 +1,20 @@
-# Pubfeed
+# PubFeed
+PubFeed is an aggregator for academics to help them save time on searches that they would make daily by automating the task.
 
-## Description
+## What can you do?
+### Log in
+We use the Devise gem for authentication, so you can log in.
+### Enter/Save your keywords
+We search for articles with keywords you enter... So you don't have to! There is an easy to use form for entering your chosen keyword(s).
+### Email notifications
+This gives you the list of new articles.
+### Display all your results
+All of the articles you care about in one nifty place! You can also save your favorites!
 
-Add a short description of your app.
-
-## Screenshots
-
-Add some spiffy screenshots of your app here.
-
-## Background
-
-Why did you want to make this app? What was your development process
-like?
-
-## Features
-
-Bullet point some of the key features of your app here.
-
-## Usage
-
-How do users use your app?
-
-## Development/Contribution
-
-Explain how people can contribute to your app. How should they write tests?
-Any things in particular you'd like to see in pull requests?
-
-## Future
-
-What features are you currently working on? Only mention things that you
-actually are implementing. No pie-in-the-sky-never-gonna-happen stuff.
-
-## Author
-
-Link to your blog, twitter, etc!
+## Possible future features
+#### Save/Bookmark your favorites!
+#### Search by something other than keyword (institution, researcher, etc.)
+#### Search other databases!
 
 ## License
-
 Pubfeed is MIT Licensed. See LICENSE for details.
