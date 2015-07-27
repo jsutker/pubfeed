@@ -9,6 +9,15 @@ class KeywordsController < ApplicationController
       redirect root_path
     end
   end
+  def destroy
+    if Keyword.find(params[:id]).destroy
+      respond_to do |format|
+        format.js
+      end
+    else
+      redirect root_path
+    end
+  end
   private
     def keyword_params
       params.require(:keyword).permit(:name, :user_id)
