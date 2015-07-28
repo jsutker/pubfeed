@@ -82,11 +82,4 @@ class Keyword < ActiveRecord::Base
     articleHash["Journal"]["Title"]
   end
 
-  def url(id_from_json)
-    "http://www.ncbi.nlm.nih.gov/pubmed/?term=#{id_from_json}"
-  end
-
-
-
-
 end
