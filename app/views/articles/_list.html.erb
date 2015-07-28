@@ -1,0 +1,11 @@
+<ul>
+<% current_user.articles.each do |article| %>
+  <li>
+    <strong>
+      <%= form_for article, remote: true do |f|%>
+        <%= article.title %>
+      <% end %>
+    </strong>
+  </li>
+<% end %>
+</ul>
