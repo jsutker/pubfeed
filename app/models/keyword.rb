@@ -68,9 +68,14 @@ class Keyword < ActiveRecord::Base
   end
 
   def authors(articleHash)
-    articleHash["AuthorList"]["Author"].map do |author|
-      "#{author["LastName"]} #{author["Initials"]}"
-    end.join(", ")
+    authorSet = articleHash["AuthorList"]["Author"]
+    if authorSet.class == [].class
+      authorSet.map do |author|
+        "#{author["LastName"]} #{author["Initials"]}"
+      end.join(", ")
+    else
+      "#{authorSet["LastName"]} #{authorSet["Initials"]}"
+    end
   end
 
   def journal(articleHash)
