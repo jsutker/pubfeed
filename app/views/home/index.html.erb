@@ -16,7 +16,10 @@ Enter keywords you'd like to recieve updates on here. <br>
 <br>
 <br>
 
-<h2>Feed</h2><p>(from the last 24 hours)</p>
+<h2>Feed <%= button_to "Refresh", "/articles", remote: true %>
+
+</h2><p>(from the last 24 hours)</p>
+<br>
 
 <div class="article_list">
 <%= render "articles/list" %>
