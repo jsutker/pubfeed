@@ -1,6 +1,6 @@
 <ul>
 <% current_user.keywords.each do |keyword| %>
-  <li>
+  <li class="keyword_li">
     <strong>
       <%= form_for keyword, remote: true, method: :delete do |f|%>
         <%= keyword.name %>
