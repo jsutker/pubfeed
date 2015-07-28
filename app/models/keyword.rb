@@ -12,8 +12,8 @@ class Keyword < ActiveRecord::Base
 
   #so this is just for one keyword right now
 
-  def format_keyword(keyword)
-    "(#{keyword})"
+  def format_keyword
+    "(#{self.name})"
   end
 
   def format_yesterday
@@ -25,12 +25,12 @@ class Keyword < ActiveRecord::Base
     "+AND+(%22#{year}%2F#{month}%2F#{day}%22%5B"
   end
 
-  def recent_as_json(keyword)
-    JSON.load(RestClient.get(BASE_URL + format_keyword(keyword) + format_yesterday + DATE_URL))
+  def recent_as_json
+    JSON.load(RestClient.get(BASE_URL + format_keyword + format_yesterday + DATE_URL))
   end
 
   def recent_id_array(keyword)
-    recent_as_json(keyword)["esearchresult"]["idlist"]
+    recent_as_json["esearchresult"]["idlist"]
   end
 
   def get_abstract_xml_as_json(abstract_id)
@@ -40,21 +40,21 @@ class Keyword < ActiveRecord::Base
     #make article objects here probably
   end
 
-  def get_all_recent_abstracts(keyword)
-    recent_id_array(keyword).collect do |id|
+  def get_all_recent_abstracts
+    recent_id_array(self.name).collect do |id|
       get_abstract_xml_as_json(id)
       
     end
   end
 
-  def collect_recent_titles(keyword)
-    get_all_recent_abstracts(keyword).collect do |article|
+  def collect_recent_titles
+    get_all_recent_abstracts.collect do |article|
       title(article)
     end
   end
 
-  def collect_recent_urls(keyword)
-    get_all_recent_abstracts(keyword).collect do |article|
+  def collect_recent_urls
+    get_all_recent_abstracts.collect do |article|
       url(article)
     end
   end
