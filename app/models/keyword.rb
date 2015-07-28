@@ -36,14 +36,17 @@ class Keyword < ActiveRecord::Base
   def get_abstract_xml_as_json(abstract_id)
     abstract = RestClient.get("http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=abstract&id=#{abstract_id}")
     response = Crack::XML.parse(abstract)
-    response["PubmedArticleSet"]["PubmedArticle"]
-    #make article objects here probably
+
+    @article = Article.new(title: title(response), abstract: abstract_text(response))
+    # @article.title = title(response)
+    # @article.abstract = abstract_text(response)
+    @article.save
+    self.articles << @article
   end
 
   def get_all_recent_abstracts
     recent_id_array(self.name).collect do |id|
-      get_abstract_xml_as_json(id)
-      
+      get_abstract_xml_as_json(id) 
     end
   end
 
@@ -60,17 +63,17 @@ class Keyword < ActiveRecord::Base
   end
 
 
-  def abstract_text(article)
+  def abstract_text(response)
     #different if we have article instances
-    article["MedlineCitation"]["Article"]["Abstract"]["AbstractText"]
+    response["PubmedArticleSet"]["PubmedArticle"]["MedlineCitation"]["Article"]["Abstract"]["AbstractText"]
   end
 
-  def title(article)
-    article["MedlineCitation"]["Article"]["ArticleTitle"]
+  def title(response)
+    response["PubmedArticleSet"]["PubmedArticle"]["MedlineCitation"]["Article"]["ArticleTitle"]
   end
 
-  def url(article)
-    id = article["MedlineCitation"]["PMID"]
+  def url(response)
+    id = response["PubmedArticleSet"]["PubmedArticle"]["MedlineCitation"]["PMID"]
     "http://www.ncbi.nlm.nih.gov/pubmed/?term=#{id}"
   end
 
