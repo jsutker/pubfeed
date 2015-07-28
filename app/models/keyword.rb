@@ -29,23 +29,20 @@ class Keyword < ActiveRecord::Base
     JSON.load(RestClient.get(BASE_URL + format_keyword + format_yesterday + DATE_URL))
   end
 
-  def recent_id_array(keyword)
+  def recent_id_array
     recent_as_json["esearchresult"]["idlist"]
   end
 
-  def get_abstract_xml_as_json(abstract_id)
-    abstract = RestClient.get("http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=abstract&id=#{abstract_id}")
-    response = Crack::XML.parse(abstract)
-
-    @article = Article.new(title: title(response), abstract: abstract_text(response))
-    # @article.title = title(response)
-    # @article.abstract = abstract_text(response)
-    @article.save
+  def get_abstract_xml_as_json(id_from_json)
+    xml = RestClient.get("http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=abstract&id=#{id_from_json}")
+    json = Crack::XML.parse(xml)
+    articleHash = json["PubmedArticleSet"]["PubmedArticle"]["MedlineCitation"]["Article"]
+    @article = Article.find_or_create_by(title: title(articleHash), abstract: abstract(articleHash), id_from_json: id_from_json, journal: journal(articleHash), authors: authors(articleHash))
     self.articles << @article
   end
 
   def get_all_recent_abstracts
-    recent_id_array(self.name).collect do |id|
+    recent_id_array.collect do |id|
       get_abstract_xml_as_json(id) 
     end
   end
@@ -62,24 +59,28 @@ class Keyword < ActiveRecord::Base
     end
   end
 
-
-  def abstract_text(response)
-    #different if we have article instances
-    response["PubmedArticleSet"]["PubmedArticle"]["MedlineCitation"]["Article"]["Abstract"]["AbstractText"]
+  def title(articleHash)
+    articleHash["ArticleTitle"]
   end
 
-  def title(response)
-    response["PubmedArticleSet"]["PubmedArticle"]["MedlineCitation"]["Article"]["ArticleTitle"]
+  def abstract(articleHash)
+    articleHash["Abstract"]["AbstractText"]
   end
 
-  def url(response)
-    id = response["PubmedArticleSet"]["PubmedArticle"]["MedlineCitation"]["PMID"]
-    "http://www.ncbi.nlm.nih.gov/pubmed/?term=#{id}"
+  def authors(articleHash)
+    articleHash["AuthorList"]["Author"].map do |author|
+      "#{author["LastName"]} #{author["Initials"]}"
+    end.join(", ")
   end
 
-  def authors(article)
-    article["MedlineCitation"]["Article"]["Abstract"]["AuthorList"]
+  def journal(articleHash)
+    articleHash["Journal"]["Title"]
   end
+
+  def url(id_from_json)
+    "http://www.ncbi.nlm.nih.gov/pubmed/?term=#{id_from_json}"
+  end
+
 
 
 
