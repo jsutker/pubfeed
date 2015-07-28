@@ -1,25 +1,23 @@
 class KeywordsController < ApplicationController
+
   def create
-    current_user.keywords.build(keyword_params)
-    if current_user.save
-      respond_to do |format|
+    respond_to do |format|
+      if !(current_user.keywords.exists?(name: params[:keyword][:name]))
+        @keyword = Keyword.find_or_create_by(name: params[:keyword][:name])
+        current_user.keywords << @keyword
         format.js
+      else
+        format.js {render :js=>'$("#keyword_name").val("");alert("Invalid/Used keyword");'}
       end
-    else
-      redirect root_path
     end
   end
+
   def destroy
-    if Keyword.find(params[:id]).destroy
-      respond_to do |format|
-        format.js
-      end
-    else
-      redirect root_path
+    keyword = Keyword.find(params[:id])
+    current_user.keywords.delete(keyword)
+    current_user.save
+    respond_to do |format|
+      format.js
     end
   end
-  private
-    def keyword_params
-      params.require(:keyword).permit(:name, :user_id)
-    end
 end
