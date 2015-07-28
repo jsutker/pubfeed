@@ -33,17 +33,19 @@ class Keyword < ActiveRecord::Base
     recent_as_json["esearchresult"]["idlist"]
   end
 
-  def get_abstract_xml_as_json(id_from_json)
+  def get_abstract_xml_as_json(id_from_json, current_user)
     xml = RestClient.get("http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=abstract&id=#{id_from_json}")
     json = Crack::XML.parse(xml)
     articleHash = json["PubmedArticleSet"]["PubmedArticle"]["MedlineCitation"]["Article"]
     @article = Article.find_or_create_by(title: title(articleHash), abstract: abstract(articleHash), id_from_json: id_from_json, journal: journal(articleHash), authors: authors(articleHash))
-    self.articles << @article
+    if !(current_user.articles.exists?(id_from_json: id_from_json))
+      self.articles << @article
+    end
   end
 
-  def get_all_recent_abstracts
+  def get_all_recent_abstracts(current_user)
     recent_id_array.collect do |id|
-      get_abstract_xml_as_json(id) 
+      get_abstract_xml_as_json(id, current_user) 
     end
   end
 
