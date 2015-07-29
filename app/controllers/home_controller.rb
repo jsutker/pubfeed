@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
   def index
-    @keyword = Keyword.new
-    @articles = current_user.articles
+    if current_user
+      @keyword = Keyword.new
+      @articles = current_user.articles
+    end
   end
 end
