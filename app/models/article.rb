@@ -15,13 +15,13 @@ class Article < ActiveRecord::Base
   end
 
   def self.find_abstract(articleHash)
-    if articleHash["Abstract"] && articleHash["Abstract"]["AbstractText"]
+    if articleHash["Abstract"]
       articleHash["Abstract"]["AbstractText"]
     end
   end
 
   def self.find_authors(articleHash)
-    if articleHash["AuthorList"] && articleHash["AuthorList"]["Author"]
+    if articleHash["AuthorList"] 
       authorSet = articleHash["AuthorList"]["Author"]
       if authorSet.is_a?(Array)
         authorSet.map do |author|
