@@ -13,8 +13,12 @@ class KeywordsController < ApplicationController
   end
 
   def filter
-    @keyword = Keyword.find(params[:keyword][:id])
-    @articles = @keyword.articles
+    if !(params[:keyword][:id].empty?)
+      @keyword = Keyword.find(params[:keyword][:id])
+      @articles = @keyword.articles
+    else
+      @articles = current_user.articles
+    end
     respond_to do |format|
       format.js
     end
