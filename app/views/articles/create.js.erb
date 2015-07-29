@@ -1,3 +1,4 @@
 
 $('.article_list').html("<%= j render 'articles/list', :locals => {:articles => @articles} %>")
 $('form.button_to input[type="submit"]').show();
+$("#loading").hide();
