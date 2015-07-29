@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>You have <%= @articles.length %> new article<%= @articles.length>1 ? 's' : '' %>!</h1>
+    <ul>
+    <% @user.articles.shuffle.each do |article| %>
+      <li class="article_li">
+        <strong>
+          <a href="<%= article.url %>" target="_blank"><%= article.title %></a><br>
+          Keywords: <%= (@user.keywords&article.keywords).map{|keyword|keyword.name}.join(", ") %><br>
+          <%= article.authors %><br>
+        </strong>
+        <em>
+          <%= article.journal %><br>
+        </em>
+          <% @abstr = article.abstract[0...500] %>
+          <%= @abstr==article.abstract ? @abstr : @abstr[0...497].concat("...") %>
+      </li>
+      <br>
+    <% end %>
+    </ul>
+    <p>Browse your feed and update your keywords at <a href="www.example.com">PubFeed</a>. Have a great day!</p>
+  </body>
+</html>
