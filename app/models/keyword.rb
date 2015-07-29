@@ -35,7 +35,7 @@ class Keyword < ActiveRecord::Base
     end
   end 
 
-  def get_all_recent_abstracts2(current_user)
+  def get_all_recent_abstracts(current_user)
     recent_id_array.collect do |id|
       hydrate_article(id, current_user)
     end

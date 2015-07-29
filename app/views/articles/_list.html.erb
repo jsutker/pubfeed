@@ -1,5 +1,6 @@
 <ul>
-<% current_user.articles.each do |article| %>
+<% @articles.each do |article| %>
+
   <li class="article_li">
     <%= form_for article, remote: true do |f|%>
       <strong>
