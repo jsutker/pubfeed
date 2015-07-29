@@ -1,12 +1,10 @@
 <ul>
 <% current_user.keywords.each do |keyword| %>
   <li class="keyword_li">
-    <strong>
-      <%= form_for keyword, remote: true, method: :delete do |f|%>
-        <%= keyword.name %>
-        <%= f.submit "X" %>
-      <% end %>
-    </strong>
+    <%= form_for keyword, remote: true, method: :delete do |f|%>
+      <h5><%= keyword.name %>
+      <%= f.submit "X" %></h5>
+    <% end %>
   </li>
 <% end %>
 </ul>

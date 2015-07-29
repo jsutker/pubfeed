@@ -6,7 +6,7 @@ class Keyword < ActiveRecord::Base
   validates :name, presence: true
   validates :name, uniqueness: true
 
-  BASE_URL = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmode=json&retmax=1000&term="
+  BASE_URL = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmode=json&retmax=100&term="
 
   DATE_URL = "Date+-+Entrez%5D+%3A+%223000%22%5BDate+-+Entrez%5D)"
 
@@ -66,7 +66,7 @@ class Keyword < ActiveRecord::Base
   end
 
   def abstract(articleHash)
-    articleHash["Abstract"]["AbstractText"]
+    articleHash["Abstract"]["AbstractText"] if articleHash["Abstract"]
   end
 
   def authors(articleHash)

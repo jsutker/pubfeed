@@ -7,4 +7,9 @@ class ArticlesController < ApplicationController
       format.js
     end
   end
+  def index
+    @user = current_user
+    @articles = @user.articles
+    render "user_mailer/daily_result_email"
+  end
 end

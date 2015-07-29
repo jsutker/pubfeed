@@ -4,6 +4,7 @@
     <%= form_for article, remote: true do |f|%>
       <strong>
         <a href="<%= article.url %>" target="_blank"><%= article.title %></a><br>
+        Keywords: <%= (current_user.keywords&article.keywords).map{|keyword|keyword.name}.join(", ") %><br>
         <%= article.authors %><br>
       </strong>
       <em>
@@ -11,7 +12,7 @@
       </em>
         <%= article.abstract %>
       <% end %>
-    <br>
   </li>
+  <br>
 <% end %>
 </ul>
