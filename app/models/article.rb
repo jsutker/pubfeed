@@ -15,24 +15,26 @@ class Article < ActiveRecord::Base
   end
 
   def self.find_abstract(articleHash)
-    articleHash["Abstract"]["AbstractText"]
+    if articleHash["Abstract"] && articleHash["Abstract"]["AbstractText"]
+      articleHash["Abstract"]["AbstractText"]
+    end
   end
 
   def self.find_authors(articleHash)
-    authorSet = articleHash["AuthorList"]["Author"]
-    if authorSet.class == [].class
-      authorSet.map do |author|
-        "#{author["LastName"]} #{author["Initials"]}"
-      end.join(", ")
-    else
-      "#{authorSet["LastName"]} #{authorSet["Initials"]}"
+    if articleHash["AuthorList"] && articleHash["AuthorList"]["Author"]
+      authorSet = articleHash["AuthorList"]["Author"]
+      if authorSet.class == [].class
+        authorSet.map do |author|
+          "#{author["LastName"]} #{author["Initials"]}"
+        end.join(", ")
+      else
+        "#{authorSet["LastName"]} #{authorSet["Initials"]}"
+      end
     end
   end
 
   def self.find_journal(articleHash)
     articleHash["Journal"]["Title"]
   end
-
-
 
 end

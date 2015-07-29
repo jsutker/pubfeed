@@ -8,7 +8,4 @@ module DateConcerns
     "+AND+(%22#{year}%2F#{month}%2F#{day}%22%5B"
   end
 
-
-
-
 end
