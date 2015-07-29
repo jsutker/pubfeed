@@ -1,4 +1,4 @@
-module DateConcerns
+module Dateable
 
   def format_yesterday
     yesterday = (DateTime.now - 1).to_s

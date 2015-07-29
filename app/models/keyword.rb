@@ -6,7 +6,7 @@ class Keyword < ActiveRecord::Base
   validates :name, presence: true
   validates :name, uniqueness: true
 
-  include DateConcerns
+  include Dateable
 
   BASE_URL = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmode=json&retmax=1000&term="
 

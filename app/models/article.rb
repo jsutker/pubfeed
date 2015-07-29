@@ -23,7 +23,7 @@ class Article < ActiveRecord::Base
   def self.find_authors(articleHash)
     if articleHash["AuthorList"] && articleHash["AuthorList"]["Author"]
       authorSet = articleHash["AuthorList"]["Author"]
-      if authorSet.class == [].class
+      if authorSet.is_a?(Array)
         authorSet.map do |author|
           "#{author["LastName"]} #{author["Initials"]}"
         end.join(", ")
