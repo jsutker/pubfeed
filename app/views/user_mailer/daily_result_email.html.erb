@@ -16,12 +16,12 @@
         <em>
           <%= article.journal %><br>
         </em>
-          <% @abstr = article.abstract[0...500] %>
+          <% @abstr = (article.abstract ? article.abstract[0...500] : "This article contains no abstract.") %>
           <%= @abstr==article.abstract ? @abstr : @abstr[0...497].concat("...") %>
       </li>
       <br>
     <% end %>
     </ul>
-    <p>Browse your feed and update your keywords at <a href="www.example.com">PubFeed</a>. Have a great day!</p>
+    <p>Browse your feed and update your keywords at <a href="http://www.example.com">PubFeed</a>. Have a great day!</p>
   </body>
 </html>
