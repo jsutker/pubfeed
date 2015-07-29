@@ -12,6 +12,14 @@ class KeywordsController < ApplicationController
     end
   end
 
+  def filter
+    @keyword = Keyword.find(params[:keyword][:id])
+    @articles = @keyword.articles
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def destroy
     keyword = Keyword.find(params[:id])
     current_user.keywords.delete(keyword)
@@ -20,4 +28,6 @@ class KeywordsController < ApplicationController
       format.js
     end
   end
+
+
 end

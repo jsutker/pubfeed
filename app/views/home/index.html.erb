@@ -19,9 +19,13 @@ Enter keywords you'd like to recieve updates on here. <br>
 <h2>Feed</h2><h5> <%= button_to "Refresh", "/articles", remote: true %></h5>
 <p>(from the last 24 hours)</p>
 <br>
+<%= form_for @keyword, remote: true, url: "/filter" do |f| %>
+  <%= f.collection_select :id, current_user.keywords.order(:name),:id,:name, include_blank: true %>
+  <%= f.submit "Filter by keyword"%>
+<% end %>
 
 <div class="article_list">
-<%= render "articles/list" %>
+<%= render "articles/list", :locals => {:articles => @articles} %>
 </div>
 
 <% end %>
