@@ -19,10 +19,10 @@
   <h2>Feed</h2><h5> <%= button_to "Refresh", "/articles", remote: true %></h5><div id="loading">Loading<span id="dots"></span></div>
   <p>(from the last 24 hours)</p>
   <br>
-  <%= form_for @keyword, remote: true, url: "/filter" do |f| %>
-    <%= f.collection_select :id, current_user.keywords.order(:name),:id,:name, include_blank: "Show All" %>
-    <%= f.submit "Filter by keyword"%>
-  <% end %>
+
+  <div class="keyword_dropdown"
+  <%= render "keywords/dropdown"%>
+  </div>
 
   <div class="article_list">
   <%= render "articles/list", :locals => {:articles => @articles} %>
