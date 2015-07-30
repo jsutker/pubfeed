@@ -20,14 +20,19 @@
 
 
   <br>
+  <div class ="container">
 
   <h2>Feed</h2><h5> <%= button_to "Refresh", "/articles", remote: true %></h5><div id="loading">Loading<span id="dots"></span></div>
   <p>(from the last 24 hours)</p>
   <br>
 
+
+
   <div class="keyword_dropdown"
   <%= render "keywords/dropdown"%>
   </div>
+</div>
+<div class ="container">
 
   <div class="article_list">
   <%= render "articles/list", :locals => {:articles => @articles} %>
@@ -38,3 +43,4 @@
   Pubfeed automates your daily Pubmed searches. Sign up today.
   </div>
 <%end%>
+</div>
