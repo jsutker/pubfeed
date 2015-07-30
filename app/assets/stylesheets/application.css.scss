@@ -64,9 +64,18 @@
   background-position: center center;            /* optionally, center the image */
 }
 
-
 .keywords {
   color: red;
+}
+
+
+.container h2 {
+  font-size: 3em;
+  font-weight: normal;
+}
+
+* {
+  font-family: 'Lato', sans-serif;
 }
 
 .keyword_ul {
@@ -94,5 +103,3 @@ h5 > input[type="submit"] {
  cursor: pointer;
  visibility: hidden;
 }
-
-
