@@ -1,9 +1,9 @@
-<ul>
+<ul class="keyword_ul">
 <% current_user.keywords.order(:name).each do |keyword| %>
   <li class="keyword_li">
     <%= form_for keyword, remote: true, method: :delete do |f|%>
       <h5><%= keyword.name %>
-      <%= f.submit "X" %></h5>
+      <%= f.submit "X", class: "keyword_remove"  %></h5>
     <% end %>
   </li>
 <% end %>

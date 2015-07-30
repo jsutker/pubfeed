@@ -40,6 +40,7 @@
 
 .custom-auth {
   margin-top: 2em;
+  color:rgb(6, 42, 89);
 }
 
 .banner {
@@ -67,3 +68,35 @@
 .keywords {
   color: red;
 }
+
+.keyword_ul {
+  overflow: auto;
+  padding-top: 1em;
+}
+
+.keyword_li {
+  float: left;
+  list-style-type: none;
+}
+
+.keyword_li h5 {
+  font-size: 2em;
+  color: black;
+  font-weight: 500;
+}
+
+h5 > input[type="submit"] {
+ color: red;
+ background:none!important;
+ border:none; 
+ padding:0!important;
+ font: inherit; 
+ cursor: pointer;
+ visibility: hidden;
+}
+
+
+
+/*.keyword_remove {
+  visibility: hidden;
+}*/
