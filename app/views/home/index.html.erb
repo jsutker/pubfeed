@@ -6,10 +6,10 @@
 <div class="banner">
   <div class="jumbotron">
   <div class ="container">
-    <strong><h3>Enter keywords you'd like to recieve daily updates on here.</h3></strong>
+    <strong><h3>Enter keywords you'd like to recieve updates on.</h3></strong>
       <%= form_for @keyword, remote: true do |f| %>
         <%= f.text_field :name %>
-        <%= f.submit :style => "display: none;" %>
+        <%= f.submit :style => "display: none;", class: "keyword_submit" %>
       <% end %>
       <div class="keyword_list">
         <%= render "keywords/list" %>
