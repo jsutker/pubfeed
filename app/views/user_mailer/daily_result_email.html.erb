@@ -4,6 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
+    <% @articles = @articles.uniq %>
     <h1>You have <%= @articles.length %> new article<%= @articles.length>1 ? 's' : '' %>!</h1>
     <ul>
     <% @user.articles.shuffle[0...10].each do |article| %>
