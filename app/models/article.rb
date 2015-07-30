@@ -16,7 +16,11 @@ class Article < ActiveRecord::Base
 
   def self.find_abstract(articleHash)
     if articleHash["Abstract"]
-      articleHash["Abstract"]["AbstractText"]
+      if articleHash["Abstract"]["AbstractText"].is_a?(Array)
+        articleHash["Abstract"]["AbstractText"].join(" ")
+      else
+        articleHash["Abstract"]["AbstractText"]
+      end
     end
   end
 
