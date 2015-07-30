@@ -2,18 +2,23 @@
 
 <% if user_signed_in? %>
 
-  Enter keywords you'd like to recieve updates on here. <br>
 
-  <div class="keyword_list">
-  <%= render "keywords/list" %>
+<div class="banner">
+  <div class="jumbotron">
+  <div class ="container">
+    <strong><h3>Enter keywords you'd like to recieve daily updates on here.</h3></strong>
+      <%= form_for @keyword, remote: true do |f| %>
+        <%= f.text_field :name %>
+        <%= f.submit :style => "display: none;" %>
+      <% end %>
+      <div class="keyword_list">
+        <%= render "keywords/list" %>
+      </div>
   </div>
+  </div>
+</div>
 
-  <br>
-  <%= form_for @keyword, remote: true do |f| %>
-  <%= f.text_field :name %>
-  <%= f.submit "Add Keyword" %>
-  <% end %>
-  <br>
+
   <br>
 
   <h2>Feed</h2><h5> <%= button_to "Refresh", "/articles", remote: true %></h5><div id="loading">Loading<span id="dots"></span></div>

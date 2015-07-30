@@ -10,7 +10,12 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree ../../../vendor/assets/stylesheets/.
+
+
+
+
+
+
  *= require_tree .
  *= require_self
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"
@@ -18,19 +23,47 @@
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.ttf"
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.svg"
  */
-@import "bootstrap";
-/* Some Style from the Bootstrap Default Theme */
-body {
-  padding-top: 70px;
-  padding-bottom: 30px;
+
+
+.pubfeed{
+  padding-top: .5em;
+  font-size: 2em;
+  color:rgb(6, 42, 89);
 }
 
-.theme-dropdown .dropdown-menu {
-  position: static;
-  display: block;
-  margin-bottom: 20px;
+.small {
+  font-size: 1em;
+  margin-top: -2.5em;
+  float: left;
+  color: rgb(7, 115, 116);
 }
 
-.theme-showcase > p > .btn {
-  margin: 5px 0;
+.custom-auth {
+  margin-top: 2em;
+}
+
+.banner {
+  padding-top: 4em;
+}
+
+.banner h3 {
+  font-size: 1.5em;
+  color: black;
+}
+
+.banner {
+  background-color: transparent;
+}
+
+.jumbotron {
+  height: 30em;
+  background-image: image-url("germination.jpg");
+  background-size:   cover;                      /* <------ */
+  background-repeat: no-repeat;
+  background-position: center center;            /* optionally, center the image */
+}
+
+
+.keywords {
+  color: red;
 }
