@@ -1,0 +1,6 @@
+<div> 
+    <%= form_for @keyword, remote: true, url: "/filter" do |f| %>
+      <%= f.collection_select :id, current_user.keywords.order(:name),:id,:name, include_blank: "Show All" %>
+      <%= f.submit "Filter by keyword"%>
+  <% end %>
+</div>  
