@@ -6,7 +6,7 @@
   <body>
     <h1>You have <%= @articles.length %> new article<%= @articles.length>1 ? 's' : '' %>!</h1>
     <ul>
-    <% @user.articles.shuffle.each do |article| %>
+    <% @user.articles.shuffle[0...10].each do |article| %>
       <li class="article_li">
         <strong>
           <a href="<%= article.url %>" target="_blank"><%= article.title %></a><br>
@@ -22,6 +22,9 @@
       <br>
     <% end %>
     </ul>
+    <% if @articles.length>10 %>
+    <h3>... And <%= @articles.length-10 %> more waiting for you at <a href="http://www.example.com">PubFeed</a>!</h3>
+    <% end %>
     <p>Browse your feed and update your keywords at <a href="http://www.example.com">PubFeed</a>. Have a great day!</p>
   </body>
 </html>
