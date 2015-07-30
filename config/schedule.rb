@@ -21,10 +21,10 @@
 
 set :environment, "development"
 
-every 1.day :at => '2:30 am' do
+every 2.minutes do
   runner 'EmailAutomator.clean_and_send'
 end
 
-# every 1.minute do
-#   command "echo 'hello from rails!!!'"
-# end
+every 1.minute do
+  command "echo 'hello from rails!!!'"
+end
