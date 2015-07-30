@@ -5,7 +5,7 @@ module Dateable
     year = yesterday[0,4]
     month = yesterday[5,2]
     day = yesterday[8,2]
-    "+AND+(%22#{year}%2F#{month}%2F#{day}%22%5B"
+    ")+AND+(%22#{year}%2F#{month}%2F#{day}%22%5B"
   end
 
 end
