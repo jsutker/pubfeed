@@ -26,6 +26,8 @@ class KeywordsController < ApplicationController
 
   def destroy
     keyword = Keyword.find(params[:id])
+    @keyword = keyword
+    @articles = current_user.articles
     current_user.keywords.delete(keyword)
     current_user.save
     respond_to do |format|
