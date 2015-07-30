@@ -41,7 +41,19 @@
 </div>
 
 <%else %>
-  <div align="center" class="container">
-  Pubfeed automates your daily Pubmed searches. Sign up today.
+
+<div class="banner">
+  <div class="jumbotron home-signup">
+  <div class ="container">
+     <div align="center" class="container"> <br> <br>
+  <h2> Pubfeed automates your daily Pubmed searches <br><br></h2>
+
+
+<%= button_to "Sign up", new_user_registration_path,  {method: :get, class: 'navbar-link btn btn-primary btn-lg outline'}  %>
+
+  </div> 
   </div>
+  </div>
+</div>
+
 <%end%>
