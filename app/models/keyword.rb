@@ -27,17 +27,15 @@ class Keyword < ActiveRecord::Base
     json["PubmedArticleSet"]["PubmedArticle"]["MedlineCitation"]["Article"]
   end
 
-  def hydrate_article(id, current_user)
+  def hydrate_article(id)
     articleHash = get_abstract_info(id)
     article = Article.find_or_create_abstracts(articleHash, id)
-    if !(current_user.articles.exists?(id_from_json: id))
-      self.articles << article
-    end
+    self.articles << article
   end 
 
-  def get_all_recent_abstracts(current_user)
+  def get_all_recent_abstracts
     recent_id_array.collect do |id|
-      hydrate_article(id, current_user)
+      hydrate_article(id)
     end
   end
 
