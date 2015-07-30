@@ -8,17 +8,12 @@ class Keyword < ActiveRecord::Base
 
   include Dateable
 
-  BASE_URL = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmode=json&retmax=1000&term="
+  BASE_URL = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmode=json&retmax=1000&term=("
 
   DATE_URL = "Date+-+Entrez%5D+%3A+%223000%22%5BDate+-+Entrez%5D)"
 
-
-  def format_keyword #put in logic for multiple keywords
-    "(#{self.name})"
-  end
-
   def recent_id_array
-    JSON.load(RestClient.get(BASE_URL + format_keyword + format_yesterday + DATE_URL))["esearchresult"]["idlist"]
+    JSON.load(RestClient.get(BASE_URL + self.name + format_yesterday + DATE_URL))["esearchresult"]["idlist"]
   end
 
   def get_abstract_info(id)
