@@ -1,6 +1,6 @@
 <ul>
 <% @articles.sort_by{|a|((current_user.keywords)&(a.keywords)).length*-1}.each do |article| %>
-  <li class="article_li">
+  <li class="article_li" style="list-style-type: none">
     <%= form_for article, remote: true do |f|%>
       <strong>
         <a href="<%= article.url %>" target="_blank"><%= article.title %></a><br>

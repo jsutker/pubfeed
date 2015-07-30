@@ -28,19 +28,20 @@
 
 
 
-  <div class="keyword_dropdown"
+  <div class="keyword_dropdown">
   <%= render "keywords/dropdown"%>
   </div>
 </div>
+<br>
 <div class ="container">
 
   <div class="article_list">
   <%= render "articles/list", :locals => {:articles => @articles} %>
   </div>
+</div>
 
 <%else %>
   <div align="center" class="container">
   Pubfeed automates your daily Pubmed searches. Sign up today.
   </div>
 <%end%>
-</div>
