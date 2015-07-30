@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'home#index'
+  patch '/filter', to: 'keywords#filter'
   post '/filter', to: 'keywords#filter'
 
   # Example of regular route:

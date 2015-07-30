@@ -2,7 +2,9 @@ class ArticlesController < ApplicationController
   def create
     @articles = current_user.articles
     current_user.keywords.each do |keyword|
-      keyword.get_all_recent_abstracts
+      if keyword.articles.empty?
+        keyword.get_all_recent_abstracts
+      end
     end
     respond_to do |format|
       format.js

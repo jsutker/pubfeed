@@ -1,5 +1,5 @@
 <ul>
-<% current_user.keywords.each do |keyword| %>
+<% current_user.keywords.order(:name).each do |keyword| %>
   <li class="keyword_li">
     <%= form_for keyword, remote: true, method: :delete do |f|%>
       <h5><%= keyword.name %>
