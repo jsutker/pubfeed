@@ -1,4 +1,4 @@
-    # PubFeed
+# PubFeed
 PubFeed is an aggregator for academics to help them save time on searches that they would make daily by automating the task.
 
 ## What can you do?
@@ -12,8 +12,8 @@ This gives you the list of new articles.
 All of the articles you care about in one nifty place!
 
 ## Possible future features
-#### Save/Bookmark your favorites!
-#### Search other databases!
+ - Save/Bookmark your favorites!
+ - Search other databases!
 
 ## License
 Pubfeed is MIT Licensed. See LICENSE for details.
