@@ -10,10 +10,8 @@ We search for articles with keywords you enter... So you don't have to! There is
 This gives you the list of new articles.
 ### Display all your results
 All of the articles you care about in one nifty place!
-
-## Possible future features
- - Save/Bookmark your favorites!
- - Search other databases!
+### Save your favorites!
+Any articles you want to look at later? Want to send them to your friends/coworkers? You can do that.
 
 ## License
 Pubfeed is MIT Licensed. See LICENSE for details.
