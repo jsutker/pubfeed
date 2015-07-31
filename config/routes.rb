@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :favorites
+
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -7,6 +9,8 @@ Rails.application.routes.draw do
   root 'home#index'
   patch '/filter', to: 'keywords#filter'
   post '/filter', to: 'keywords#filter'
+
+  post '/email', to: 'favorites#email'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

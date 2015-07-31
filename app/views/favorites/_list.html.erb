@@ -1,0 +1,43 @@
+<%= link_to "See your feed.", articles_path, remote: true %>
+<br>
+<br>
+
+<%= form_tag("/email", method: "post", remote: true) do %>
+  <%= label_tag(:address, "Email your favorites to:") %><br>
+  <%= text_field_tag(:address) %><br>
+  <%= submit_tag("Send") %>
+<% end %>
+
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
+
+<br>
+<br>
+
+<% if current_user.favorites.empty? %>
+<%= "Add some favorites!" %>
+<% end %>
+
+<ul>
+<% @articles.each do |article| %>
+  <li class="article_li" style="list-style-type: none">
+    <%= form_for article, remote: true do |f|%>
+      <strong>
+        <a href="<%= article.url %>" target="_blank"><%= article.title %></a><br>
+        
+        <%= article.authors %><br>
+      </strong>
+      <em>
+        <%= article.journal %><br>
+      </em>
+        <%= article.abstract %>
+       
+          <h6><%= f.submit "Remove from favorites" %></h6>
+       
+      <% end %>
+
+  </li>
+  <br>
+<% end %>
+</ul>
