@@ -1,4 +1,9 @@
 $('.keyword_list').html("<%= j render 'keywords/list' %>")
-$('.keyword_dropdown').html("<%= j render 'keywords/dropdown' %>")
-$('.article_list').html("<%= j render 'articles/list' %>")
 hideStuff();
+
+
+if($('body > div:nth-child(4) > h2').text() === "Feed"){
+  $('.keyword_dropdown').html("<%= j render 'keywords/dropdown' %>");
+  $('.article_list').html("<%= j render 'articles/list' %>");
+}
+
