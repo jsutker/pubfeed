@@ -1,3 +1,7 @@
+<%= link_to "See your favorites!", favorites_path, remote: true %>
+<br>
+<br>
+
 <ul>
 <% @articles.sort_by{|a|((current_user.keywords)&(a.keywords)).length*-1}.uniq.each do |article| %>
   <li class="article_li" style="list-style-type: none">
@@ -11,7 +15,14 @@
         <%= article.journal %><br>
       </em>
         <%= article.abstract %>
+        <% if !current_user.favorites.exists?(Favorite.find_by(title: article.title)) %>
+          <h6><%= f.submit "Add to favorites" %></h6>
+        <% else %>
+        <br>
+          <h6><strong>"Added to favorites."</strong></h6>
+          <%end%>
       <% end %>
+
   </li>
   <br>
 <% end %>
