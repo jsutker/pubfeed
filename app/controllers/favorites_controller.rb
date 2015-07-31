@@ -19,10 +19,15 @@ class FavoritesController < ApplicationController
 
   def email
     user = current_user
-    receiver = params[:address]
-    UserMailer.email_favorites(user, receiver).deliver_now
+    if /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.match(params[:address])
+      receiver = params[:address]
+      flash.now[:notice] = "Email sent!"
+      UserMailer.email_favorites(user, receiver).deliver_now
+    else
+      flash.now[:notice] = "Please enter a valid email address."
+    end
+
     @articles = current_user.favorites
-    flash.now[:notice] = "Email sent!"
     render 'index'
   end
 
