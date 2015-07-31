@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   patch '/filter', to: 'keywords#filter'
   post '/filter', to: 'keywords#filter'
 
+  post '/email', to: 'favorites#email'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
