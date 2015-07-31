@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <ul>
+    <% @articles.each do |article| %>
+      <li class="article_li">
+        <strong>
+          <a href="<%= article.url %>" target="_blank"><%= article.title %></a><br>
+          <%= article.authors %><br>
+        </strong>
+        <em>
+          <%= article.journal %><br>
+        </em>
+          <% @abstr = (article.abstract ? article.abstract : "This article contains no abstract.") %>
+          <%= @abstr %>
+      </li>
+      <br>
+    <% end %>
+    </ul>
+    <p>Browse your feed and update your keywords at <a href="http://pubfeed.herokuapp.com">PubFeed</a>. Have a great day!</p>
+  </body>
+</html>

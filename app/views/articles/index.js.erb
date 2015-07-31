@@ -1,0 +1,7 @@
+$('body > div:nth-child(4) > h2').text("Feed");
+$('body > div:nth-child(4) > h5 > form > input[type="submit"]:nth-child(1)').show();
+$('body > div:nth-child(4) > p').show();
+$('#keyword_id').show();
+$('#new_keyword > input[type="submit"]:nth-child(3)').show();
+
+$('.article_list').html("<%= j render 'articles/list', :locals => {:articles => @articles} %>")
