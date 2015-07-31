@@ -12,6 +12,7 @@ class ArticlesController < ApplicationController
   end
 
   def index
+    @keyword = Keyword.new
     @articles = current_user.articles
     current_user.keywords.each do |keyword|
       if keyword.articles.empty?

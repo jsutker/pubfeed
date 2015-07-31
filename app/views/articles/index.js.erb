@@ -3,5 +3,5 @@ $('body > div:nth-child(4) > h5 > form > input[type="submit"]:nth-child(1)').sho
 $('body > div:nth-child(4) > p').show();
 $('#keyword_id').show();
 $('#new_keyword > input[type="submit"]:nth-child(3)').show();
-
+$('.keyword_dropdown').html("<%= j render 'keywords/dropdown' %>");
 $('.article_list').html("<%= j render 'articles/list', :locals => {:articles => @articles} %>")
