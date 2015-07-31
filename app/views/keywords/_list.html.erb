@@ -4,6 +4,7 @@
     <%= form_for keyword, remote: true, method: :delete do |f|%>
       <h5><%= keyword.name %>
       <%= f.submit "x   ", class: "keyword_remove"  %></h5>
+
     <% end %>
   </li>
 <% end %>
