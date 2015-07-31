@@ -3,7 +3,7 @@ development:
   :port: 587
   :authentication: plain
   :user_name: pubfeednotification@gmail.com
-  :password: 11Broadway
+  :password: ENV['gmail_password']
   :enable_starttls_auto: true
 production:
   :address: smtp.gmail.com
