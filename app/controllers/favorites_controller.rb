@@ -22,7 +22,7 @@ class FavoritesController < ApplicationController
     receiver = params[:address]
     UserMailer.email_favorites(user, receiver).deliver_now
     @articles = current_user.favorites
-    flash[:notice] = "Email sent!"
+    flash.now[:notice] = "Email sent!"
     render 'index'
   end
 
