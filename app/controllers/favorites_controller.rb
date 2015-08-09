@@ -7,6 +7,8 @@ class FavoritesController < ApplicationController
     end
   end
 
+
+#perhaps def update content should be a def destroy 
   def update
     favorite = Favorite.find(params[:id])
     favorite.destroy
